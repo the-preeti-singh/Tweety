@@ -1,33 +1,32 @@
-#requests package which is designed to be used by humans to interact with the language
+#For making request to other websites
 import requests
 
-#colored an Python package from termcolor library for ANSII color formatting like HTML for output in terminal
+#Formatting color output in terminal
 from termcolor import colored
 
-#Beautiful Soup an Python package from bs4 engine for parsing HTML and XML documents
+#For parsing HTML and XML documents
 from bs4 import BeautifulSoup
 
-#making a request to twitter
+#Making a request to twitter
 req = requests.get('https://www.twitter.com/')
-print(req)
-page = req.content
+PAGE = req.content
 
-#parsing Html Data with BeautifulSoup
-soup = BeautifulSoup(page,'html.parser')
+#Parsing Html Data with BeautifulSoup
+soup = BeautifulSoup(PAGE, 'html.parser')
 
-#to find all the div with class name="content"
+#To find all the div with class name="content"
 twitter_account = soup.findAll('div', {'class': 'content'})
 
-#to alternate the color of the texts
-line=0
+#To alternate the color of the texts
+line = 0
 for tweet in twitter_account:
-    print(colored ('-'*73,"yellow"))
+    print(colored('-'*80, "yellow"))
     line = line + 1
-    print(colored(tweet.strong.text,"red"))
-    if line%2==0:
+    print(colored(tweet.strong.text, "red"))
+    if line%2 == 0:
         print(tweet.p.text)
     else:
-        print(colored(tweet.p.text,"blue"))
+        print(colored(tweet.p.text, "blue"))
 
 #preventing terminal from closing
 hello = input()
