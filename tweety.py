@@ -6,7 +6,7 @@ from termcolor import colored
 
 #For parsing HTML and XML documents
 from bs4 import BeautifulSoup
-
+#Seting the special __name__ variable to have a value "__main__"
 if __name__ =="__main__":
     wait = "Please be patient, Your Tweety is fetching the tweets for you..."
 
