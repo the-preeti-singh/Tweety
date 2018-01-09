@@ -1,3 +1,5 @@
+import sys
+
 #For making request to other websites
 import requests
 
@@ -8,6 +10,16 @@ from termcolor import colored
 from bs4 import BeautifulSoup
 
 def main():
+    choice = 'Y'
+    while choice == 'Y':
+        get_tweety()
+        print("Want to refresh Tweety (Y/N)")
+        choice = input()
+        if choice == 'N':
+            sys.exit(1)
+
+# Fetching tweets
+def get_tweety():
     wait = "Please be patient, Your Tweety is fetching the tweets for you..."
 
     print(colored(wait, 'green'))
@@ -28,9 +40,10 @@ def main():
     for tweet in twitter_account:
         #Extracting username,datetime and user's tweet
         username = tweet.strong.text
+
         datetime = tweet.small.a['title']
         user_tweet = tweet.p.text
-    
+
         #Printing the tweet's information
         print(colored('-'*80, "yellow"))
         line = line + 1
@@ -41,9 +54,4 @@ def main():
         else:
             print(colored(user_tweet, "blue"))
 
-    #Preventing terminal from closing
-    hello = input()
-    print(hello)
-    
-    #Seting the special __name__ variable to have a value "__main__"
-    if __name__ =="__main__":main()
+if __name__ =="__main__": main()
