@@ -17,7 +17,23 @@ def main():
         choice = input()
         if choice == 'N':
             sys.exit(1)
-
+        else:
+            print("Choose any one among the below, which you want to visit")
+            print("1. Featured\n2. Sports\n3. Music\n4. Entertainment\n5. News\n6. Lifestyle")
+            category = input()
+          
+            def switch_tweety(category):
+                switcher = {
+                    1: get_tweety(),
+                    2: get_sports(),
+                    3: get_music(),
+                    4: get_entertainment(),
+                    5: get_news(),
+                    6: get_lifestyle()
+                }
+                print switcher.get(category, "TRY AGAIN You entered an invalid input")
+                #Code to be update.....
+            
 # Fetching tweets
 def get_tweety():
     wait = "Please be patient, Your Tweety is fetching the tweets for you..."
