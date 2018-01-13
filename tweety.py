@@ -11,36 +11,39 @@ from bs4 import BeautifulSoup
 
 def main():
     choice = 'Y'
+    get_tweety()
     while choice == 'Y':
-        get_tweety()
         print("Want to refresh Tweety (Y/N)")
         choice = input()
         if choice == 'N':
             sys.exit(1)
-        else:
-            print("Choose any one among the below, which you want to visit")
-            print("1. Featured\n2. Sports\n3. Music\n4. Entertainment\n5. News\n6. Lifestyle")
-            category = input()
-          
-            def switch_tweety(category):
-                switcher = {
-                    1: get_tweety(),
-                    2: get_sports(),
-                    3: get_music(),
-                    4: get_entertainment(),
-                    5: get_news(),
-                    6: get_lifestyle()
-                }
-                print(switcher.get(category, "TRY AGAIN You entered an invalid input"))
+        print("Choose any one among the below, which you want to visit")
+        print("1. Featured\n2. Sports\n3. Music\n4. Entertainment\n5. News\n6. Lifestyle")
+        category = input()
+        switch_tweety(category)
+
+def switch_tweety(category):
+    switcher = {
+        '1': 'get_tweety()',
+        '2': 'get_sports()',
+        '3': 'get_music()',
+        '4': 'get_entertainment()',
+        '5': 'get_news()',
+        '6': 'get_lifestyle()',
+    }
+    print(eval(switcher.get(category, "TRY AGAIN You entered an invalid input")))
+            
+                
 
 
 #Fetching Sports category tweets
 def get_sports():
 
+    heading = "\n <- Today's Sports Tweets ->"
+    print(colored(heading, 'grey'))
     #Making a request to sports category of twitter
     req = requests.get('https://twitter.com/i/streams/category/687094923246440462')  
-    print("\n <- Today's Sports Tweets ->")
-    PAGE = re.content
+    PAGE = req.content
 
     #Parsing Html Data with BeautifulSoup
     soup = BeautifulSoup(PAGE, 'html.parser')
@@ -52,9 +55,9 @@ def get_sports():
     line = 0 
     for sports in sports_tweets:
         #Extracting username,datetime and user's tweet
-        username = tweet.strong.text
-        datetime = tweet.small.a['title']
-        user_tweet = tweet.p.text
+        username = sports.strong.text
+        datetime = sports.small.a['title']
+        user_tweet = sports.p.text.replace(u'\u200b', '*')
 
         #Printing the tweet's information
         print(colored('-'*80, "yellow"))
@@ -70,10 +73,11 @@ def get_sports():
 #Fetching Music category tweets
 def get_music():
 
+    heading = "\n <- Today's Music Tweets ->"
+    print(colored(heading, 'blue'))
     #Making a request to Music category of twitter
     req = requests.get('https://twitter.com/i/streams/category/687094923246440475')  
-    print("\n <- Today's Music Tweets ->")
-    PAGE = re.content
+    PAGE = req.content
 
     #Parsing Html Data with BeautifulSoup
     soup = BeautifulSoup(PAGE, 'html.parser')
@@ -85,9 +89,9 @@ def get_music():
     line = 0 
     for music in music_tweets:
         #Extracting username,datetime and user's tweet
-        username = tweet.strong.text
-        datetime = tweet.small.a['title']
-        user_tweet = tweet.p.text
+        username = music.strong.text
+        datetime = music.small.a['title']
+        user_tweet = music.p.text.replace(u'\u200b', '*')
 
         #Printing the tweet's information
         print(colored('-'*80, "yellow"))
@@ -103,10 +107,11 @@ def get_music():
 #Fetching Entertainment category tweets
 def get_entertainment():
 
+    heading = "\n <- Today's Entertainment Tweets ->"
+    print(colored(heading, 'cyan'))
     #Making a request to entertainment category of twitter
     req = requests.get('https://twitter.com/i/streams/category/687094923246440457')  
-    print("\n <- Today's Entertainment Tweets ->")
-    PAGE = re.content
+    PAGE = req.content
 
     #Parsing Html Data with BeautifulSoup
     soup = BeautifulSoup(PAGE, 'html.parser')
@@ -118,9 +123,9 @@ def get_entertainment():
     line = 0 
     for entertainment in entertainment_tweets:
         #Extracting username,datetime and user's tweet
-        username = tweet.strong.text
-        datetime = tweet.small.a['title']
-        user_tweet = tweet.p.text
+        username = entertainment.strong.text
+        datetime = entertainment.small.a['title']
+        user_tweet = entertainment.p.text.replace(u'\u200b', '*')
 
         #Printing the tweet's information
         print(colored('-'*80, "yellow"))
@@ -136,10 +141,11 @@ def get_entertainment():
 #Fetching News category tweets
 def get_news():
 
+    heading = "\n <- Today's News Tweets ->"
+    print(colored(heading, 'red'))
     #Making a request to news category of twitter
     req = requests.get('https://twitter.com/i/streams/category/687094923246440476')  
-    print("\n <- Today's News Tweets ->")
-    PAGE = re.content
+    PAGE = req.content
 
     #Parsing Html Data with BeautifulSoup
     soup = BeautifulSoup(PAGE, 'html.parser')
@@ -151,9 +157,9 @@ def get_news():
     line = 0 
     for news in news_tweets:
         #Extracting username,datetime and user's tweet
-        username = tweet.strong.text
-        datetime = tweet.small.a['title']
-        user_tweet = tweet.p.text
+        username = news.strong.text
+        datetime = news.small.a['title']
+        user_tweet = news.p.text.replace(u'\u200b', '*')
 
         #Printing the tweet's information
         print(colored('-'*80, "yellow"))
@@ -169,10 +175,11 @@ def get_news():
 #Fetching Lifestyle category tweets
 def get_lifestyle():
 
+    heading = "\n <- Today's Lifestyle Tweets ->"
+    print(colored(heading, 'cyan'))
     #Making a request to lifestyle category of twitter
     req = requests.get('https://twitter.com/i/streams/category/776655075057868800')  
-    print("\n <- Today's Lifestyle Tweets ->")
-    PAGE = re.content
+    PAGE = req.content
 
     #Parsing Html Data with BeautifulSoup
     soup = BeautifulSoup(PAGE, 'html.parser')
@@ -184,9 +191,9 @@ def get_lifestyle():
     line = 0 
     for lifestyle in lifestyle_tweets:
         #Extracting username,datetime and user's tweet
-        username = tweet.strong.text
-        datetime = tweet.small.a['title']
-        user_tweet = tweet.p.text
+        username = lifestyle.strong.text
+        datetime = lifestyle.small.a['title']
+        user_tweet = lifestyle.p.text.replace(u'\u200b', '*')
 
         #Printing the tweet's information
         print(colored('-'*80, "yellow"))
@@ -200,21 +207,22 @@ def get_lifestyle():
 
 
 # Fetching tweets
-def get_tweety():
+def get_tweety(): 
     wait = "Please be patient, Your Tweety is fetching the tweets for you..."
-
     print(colored(wait, 'green'))
 
     #Making a request to twitter
     req = requests.get('https://www.twitter.com/')
-    print("\n <-  Today's Featured Tweets  ->")
+    heading = "\n <-  Today's Featured Tweets  ->"
+
+    print(colored(heading, 'green'))
     PAGE = req.content
 
     #Parsing Html Data with BeautifulSoup
     soup = BeautifulSoup(PAGE, 'html.parser')
 
     #To find all the div with class name="content"
-    twitter_account = soup.findAll('div', {'class': 'content'})
+    twitter_account = soup.findAll('div', {'class': 'tweet'})
 
     #To alternate the color of the texts
     line = 0
@@ -222,7 +230,7 @@ def get_tweety():
         #Extracting username,datetime and user's tweet
         username = tweet.strong.text
         datetime = tweet.small.a['title']
-        user_tweet = tweet.p.text
+        user_tweet = tweet.p.text.replace(u'\u200b', '*')
 
         #Printing the tweet's information
         print(colored('-'*80, "yellow"))
@@ -234,5 +242,4 @@ def get_tweety():
         else:
             print(colored(user_tweet, "blue"))
 
-if __name__ =="__main__": main()
-    
+if __name__=="__main__": main()
