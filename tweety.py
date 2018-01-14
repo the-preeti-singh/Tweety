@@ -34,8 +34,6 @@ def switch_tweety(category):
     print(eval(switcher.get(category, "TRY AGAIN You entered an invalid input")))
             
                 
-
-
 #Fetching Sports category tweets
 def get_sports():
 
@@ -67,7 +65,7 @@ def get_sports():
         if line%2 == 0:
             print(user_tweet)
         else:
-            print(colored(user_tweet, "blue"))
+            print(colored(user_tweet, "grey"))
 
 
 #Fetching Music category tweets
@@ -108,7 +106,7 @@ def get_music():
 def get_entertainment():
 
     heading = "\n <- Today's Entertainment Tweets ->"
-    print(colored(heading, 'cyan'))
+    print(colored(heading, 'green'))
     #Making a request to entertainment category of twitter
     req = requests.get('https://twitter.com/i/streams/category/687094923246440457')  
     PAGE = req.content
@@ -135,7 +133,7 @@ def get_entertainment():
         if line%2 == 0:
             print(user_tweet)
         else:
-            print(colored(user_tweet, "blue"))
+            print(colored(user_tweet, "green"))
 
 
 #Fetching News category tweets
@@ -169,7 +167,7 @@ def get_news():
         if line%2 == 0:
             print(user_tweet)
         else:
-            print(colored(user_tweet, "blue")) 
+            print(colored(user_tweet, "red")) 
 
 
 #Fetching Lifestyle category tweets
@@ -203,7 +201,7 @@ def get_lifestyle():
         if line%2 == 0:
             print(user_tweet)
         else:
-            print(colored(user_tweet, "blue"))
+            print(colored(user_tweet, "cyan"))
 
 
 # Fetching tweets
@@ -215,7 +213,7 @@ def get_tweety():
     req = requests.get('https://www.twitter.com/')
     heading = "\n <-  Today's Featured Tweets  ->"
 
-    print(colored(heading, 'green'))
+    print(colored(heading, 'blue'))
     PAGE = req.content
 
     #Parsing Html Data with BeautifulSoup
