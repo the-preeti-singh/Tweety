@@ -13,3 +13,8 @@ Tweety, A twitter's day glancing app. Start off your day with Tweety.
 3. Commit changes: git commit -m 'Comments'
 4. Push to the branch: git push origin new-feature
 5. Submit pull request
+
+## License
+Copyright (c) 2018 Preeti Singh
+
+Licensed under the [MIT License](https://github.com/the-preeti-singh/Tweety/blob/master/LICENSE)
