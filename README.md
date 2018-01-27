@@ -9,9 +9,9 @@ Tweety, A twitter's day glancing app. Start off your day with Tweety.
 
 ## Contributing
 1. Fork it
-2. Create feature branch: git checkout -b new-feature
-3. Commit changes: git commit -m 'Comments'
-4. Push to the branch: git push origin new-feature
+2. Create feature branch: **git checkout -b new-feature**
+3. Commit changes: **git commit -m 'Comments'**
+4. Push to the branch: **git push origin new-feature**
 5. Submit pull request
 
 ## License
